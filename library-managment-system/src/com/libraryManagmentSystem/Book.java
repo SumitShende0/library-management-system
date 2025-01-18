@@ -15,6 +15,20 @@ public class Book {
         this.bookAvailabilityStatus = bookAvailabilityStatus;
     }
 
+    public int getBookId() {
+        return bookId;
+    }
 
+    public void setBookAvailabilityStatus(String bookAvailabilityStatus) {
+        this.bookAvailabilityStatus = bookAvailabilityStatus;
+    }
 
+    @Override
+    public String toString() {
+        return "Book{" +
+                "Book ID: " + bookId +
+                ", Title: '" + bookTitle +
+                ", Author: " + bookAuthor +
+                ", Status: " + bookAvailabilityStatus;
+    }
 }

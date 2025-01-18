@@ -3,7 +3,8 @@ package com.libraryManagmentSystem;
 import java.util.LinkedList;
 
 public class Services {
-    private LinkedList<Book> booksList = new LinkedList<>();
+    private static LinkedList<Book> booksList = new LinkedList<>();
+
 
     public void addBook(Book book){
         booksList.add(book);

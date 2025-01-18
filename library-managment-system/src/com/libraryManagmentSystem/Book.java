@@ -19,6 +19,10 @@ public class Book {
         return bookId;
     }
 
+    public String getBookAvailabilityStatus() {
+        return bookAvailabilityStatus;
+    }
+
     public void setBookAvailabilityStatus(String bookAvailabilityStatus) {
         this.bookAvailabilityStatus = bookAvailabilityStatus;
     }

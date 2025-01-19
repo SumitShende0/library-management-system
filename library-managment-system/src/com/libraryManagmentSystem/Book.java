@@ -1,18 +1,17 @@
 package com.libraryManagmentSystem;
 
 public class Book {
-    private static int newBookId = 100;
     private int bookId;
     private String bookTitle;
     private String bookAuthor;
     private String bookAvailabilityStatus;
 
 
-    public Book(String bookTitle, String bookAuthor, String bookAvailabilityStatus) {
-        this.bookId = newBookId++;
+    public Book(int bookId,String bookTitle, String bookAuthor) {
+        this.bookId = bookId;
         this.bookTitle = bookTitle;
         this.bookAuthor = bookAuthor;
-        this.bookAvailabilityStatus = bookAvailabilityStatus;
+        this.bookAvailabilityStatus = "Available";
     }
 
     public int getBookId() {

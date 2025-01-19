@@ -4,6 +4,7 @@ import com.libraryManagmentSystem.exceptions.BookAlreadyAvailableException;
 import com.libraryManagmentSystem.exceptions.BookAlreadyIssuedException;
 import com.libraryManagmentSystem.exceptions.BookNotFoundException;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class LibraryManagementSystem {
@@ -35,16 +36,17 @@ public class LibraryManagementSystem {
                     try{
                         System.out.print("Enter Book ID: ");
                         int bookId = scanner.nextInt();
+                        services.bookAvailable(bookId);
                         System.out.print("Enter Book Title: ");
-                        String bookTitle = scanner.next();
+                        scanner.nextLine();
+                        String bookTitle = scanner.nextLine();
                         System.out.print("Enter Author Name: ");
-                        String bookAuthor = scanner.next();
+                        String bookAuthor = scanner.nextLine();
                         services.addBook(new Book(bookId ,bookTitle, bookAuthor));
                         System.out.println("Book Added Successfully.");
-                    }catch (IllegalArgumentException  | BookAlreadyAvailableException e){
-                        e.getMessage();
+                    }catch (IllegalArgumentException | BookAlreadyAvailableException | InputMismatchException e){
+
                     }catch (Exception e){
-                        e.getMessage();
                     }
                     break;
 
@@ -58,10 +60,8 @@ public class LibraryManagementSystem {
                         int bookId = scanner.nextInt();
                         services.searchBook(bookId);
 
-                    }catch (BookNotFoundException e){
-                        e.getMessage();
+                    }catch (BookNotFoundException | IllegalArgumentException e){
                     }catch (Exception e){
-                        e.getMessage();
                     }
                     break;
 
@@ -72,9 +72,9 @@ public class LibraryManagementSystem {
                         services.issueBook(bookId);
                         System.out.println("Book Issued successfully");
                     }catch (BookNotFoundException | BookAlreadyIssuedException e){
-                        e.getMessage();
+
                     }catch (Exception e){
-                        e.getMessage();
+
                     }
                     break;
 
@@ -85,9 +85,9 @@ public class LibraryManagementSystem {
                         services.returnBook(bookId);
                         System.out.println("Book Return successfully");
                     }catch (BookAlreadyAvailableException | BookNotFoundException e){
-                        e.getMessage();
+
                     }catch (Exception e){
-                        e.getMessage();
+
                     }
                     break;
 
@@ -98,9 +98,9 @@ public class LibraryManagementSystem {
                         services.removeBook(bookId);
                         System.out.println("Book Removed successfully");
                     }catch (BookNotFoundException | BookAlreadyIssuedException e){
-                        e.getMessage();
+
                     }catch (Exception e){
-                        e.getMessage();
+
                     }
                     break;
 

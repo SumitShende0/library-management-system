@@ -12,7 +12,12 @@ public class Services {
     private static LinkedList<Book> booksList = new LinkedList<>();
     private static HashMap<Integer, Book> booksMap = new HashMap<>();
 
+    public void bookAvailable(int bookId) throws BookAlreadyAvailableException{
+        if (booksMap.containsKey(bookId)){
+            throw new BookAlreadyAvailableException("Book Id: " + bookId + " is already exists");
+        }
 
+    }
 
     public  void addBook(Book book) throws IllegalArgumentException, BookAlreadyAvailableException{
         if (book == null){
@@ -39,8 +44,9 @@ public class Services {
     }
 
     public  void displayAllBooks(){
-
-        System.out.println(booksList);
+        for (Book book: booksList){
+            System.out.println(book);
+        }
     }
 
     public  void searchBook(int bookId) throws BookNotFoundException{

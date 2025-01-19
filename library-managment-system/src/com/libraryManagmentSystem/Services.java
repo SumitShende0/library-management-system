@@ -43,7 +43,12 @@ public class Services {
 
     }
 
-    public  void displayAllBooks(){
+    public  void displayAllBooks() {
+        if (booksList.isEmpty()){
+            System.out.println("No books are currently available in the library.");
+            return;
+        }
+        System.out.println("All Book Names Available in the Library:");
         for (Book book: booksList){
             System.out.println(book);
         }

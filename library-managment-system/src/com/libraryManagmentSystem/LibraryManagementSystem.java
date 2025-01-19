@@ -14,22 +14,30 @@ public class LibraryManagementSystem {
         services = new Services();
     }
 
+    public void displayMenu(){
+        System.out.println("Library Management System");
+        System.out.println("1. Add a book");
+        System.out.println("2. Display All Book");
+        System.out.println("3. Search for a Book");
+        System.out.println("4. Issue a Book");
+        System.out.println("5. Return a Book");
+        System.out.println("6. Delete a Book");
+        System.out.println("7. Exit");
+    }
     public void run(){
         Scanner scanner = new Scanner(System.in);
-
-        int choice;
+        int choice = -1;
 
         do {
-            System.out.println("Library Management System");
-            System.out.println("1. Add a book");
-            System.out.println("2. Display All Book");
-            System.out.println("3. Search for a Book");
-            System.out.println("4. Issue a Book");
-            System.out.println("5. Return a Book");
-            System.out.println("6. Delete a Book");
-            System.out.println("7. Exit");
+            displayMenu();
+            try {
             System.out.print("Enter your choice: ");
             choice = scanner.nextInt();
+            }catch (InputMismatchException e){
+                System.out.println("Invalid input! Please enter a number between 1 and 7.");
+                scanner.nextLine();
+            }catch (Exception e){
+            }
 
             switch (choice){
                 case 1:
@@ -44,9 +52,11 @@ public class LibraryManagementSystem {
                         String bookAuthor = scanner.nextLine();
                         services.addBook(new Book(bookId ,bookTitle, bookAuthor));
                         System.out.println("Book Added Successfully.");
-                    }catch (IllegalArgumentException | BookAlreadyAvailableException | InputMismatchException e){
-
-                    }catch (Exception e){
+                    }catch (InputMismatchException e){
+                        System.out.println("Please Enter proper input value!!!");
+                        scanner.nextLine();
+                    }
+                    catch (Exception e){
                     }
                     break;
 
@@ -60,8 +70,11 @@ public class LibraryManagementSystem {
                         int bookId = scanner.nextInt();
                         services.searchBook(bookId);
 
-                    }catch (BookNotFoundException | IllegalArgumentException e){
-                    }catch (Exception e){
+                    }catch (InputMismatchException e){
+                        System.out.println("Please Enter proper input value!!!");
+                        scanner.nextLine();
+                    }
+                    catch (Exception e){
                     }
                     break;
 
@@ -71,10 +84,11 @@ public class LibraryManagementSystem {
                         int bookId = scanner.nextInt();
                         services.issueBook(bookId);
                         System.out.println("Book Issued successfully");
-                    }catch (BookNotFoundException | BookAlreadyIssuedException e){
-
-                    }catch (Exception e){
-
+                    }catch (InputMismatchException e){
+                        System.out.println("Please Enter proper input value!!!");
+                        scanner.nextLine();
+                    }
+                    catch (Exception e){
                     }
                     break;
 
@@ -84,10 +98,11 @@ public class LibraryManagementSystem {
                         int bookId = scanner.nextInt();
                         services.returnBook(bookId);
                         System.out.println("Book Return successfully");
-                    }catch (BookAlreadyAvailableException | BookNotFoundException e){
-
-                    }catch (Exception e){
-
+                    }catch (InputMismatchException e){
+                        System.out.println("Please Enter proper input value!!!");
+                        scanner.nextLine();
+                    }
+                    catch (Exception e){
                     }
                     break;
 
@@ -97,10 +112,11 @@ public class LibraryManagementSystem {
                         int bookId = scanner.nextInt();
                         services.removeBook(bookId);
                         System.out.println("Book Removed successfully");
-                    }catch (BookNotFoundException | BookAlreadyIssuedException e){
-
-                    }catch (Exception e){
-
+                    }catch (InputMismatchException e){
+                        System.out.println("Please Enter proper input value!!!");
+                        scanner.nextLine();
+                    }
+                    catch (Exception e){
                     }
                     break;
 

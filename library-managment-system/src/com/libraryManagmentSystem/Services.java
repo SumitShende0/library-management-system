@@ -1,5 +1,7 @@
 package com.libraryManagmentSystem;
 
+import com.libraryManagmentSystem.exceptions.BookAlreadyAvailableException;
+import com.libraryManagmentSystem.exceptions.BookAlreadyIssuedException;
 import com.libraryManagmentSystem.exceptions.BookNotFoundException;
 
 import java.util.HashMap;
@@ -45,23 +47,25 @@ public class Services {
         System.out.println(booksMap.get(bookId));
     }
 
-    public static void issueBook(int bookId) throws BookNotFoundException{
+    public static void issueBook(int bookId) throws BookNotFoundException, BookAlreadyIssuedException {
         if(!booksMap.containsKey(bookId)){
             throw  new BookNotFoundException("Book with ID " + bookId + " not found.");
         }
-        if (booksMap.get(bookId).getBookAvailabilityStatus() == "Issued"){
-            throw new BookNotFoundException("Book with ID " + bookId + " already issued.");
+        Book book = booksMap.get(bookId);
+        if (book.getBookAvailabilityStatus().equals("Issued")){
+            throw new BookAlreadyIssuedException("Book with ID " + bookId + " already issued.");
         }
-        booksMap.get(bookId).setBookAvailabilityStatus("Issued");
+        book.setBookAvailabilityStatus("Issued");
     }
 
-    public static void returnBook(int bookId) throws BookNotFoundException{
+    public static void returnBook(int bookId) throws BookAlreadyAvailableException, BookNotFoundException {
         if(!booksMap.containsKey(bookId)){
             throw  new BookNotFoundException("Book with ID " + bookId + " not found.");
         }
-        if (booksMap.get(bookId).getBookAvailabilityStatus() == "Available"){
-            throw new BookNotFoundException("Book with ID " + bookId + " already available.");
+        Book book = booksMap.get(bookId);
+        if (book.getBookAvailabilityStatus().equals("Available")){
+            throw new BookAlreadyAvailableException("Book with ID " + bookId + " already available.");
         }
-        booksMap.get(bookId).setBookAvailabilityStatus("Available");
+        book.setBookAvailabilityStatus("Available");
     }
 }

@@ -12,6 +12,14 @@ public class Services {
     private static LinkedList<Book> booksList = new LinkedList<>();
     private static HashMap<Integer, Book> booksMap = new HashMap<>();
 
+    // Preload some books into the system when the class is loaded
+    static {
+        booksList.add(new Book(1, "The Great Gatsby", "F. Scott Fitzgerald"));
+        booksList.add(new Book(2, "To Kill a Mockingbird", "Harper Lee"));
+        booksMap.put(1, new Book(1, "The Great Gatsby", "F. Scott Fitzgerald"));
+        booksMap.put(2, new Book(2, "To Kill a Mockingbird", "Harper Lee"));
+};
+
     public void bookAvailable(int bookId) throws BookAlreadyAvailableException{
         if (booksMap.containsKey(bookId)){
             throw new BookAlreadyAvailableException("Book Id: " + bookId + " is already exists");

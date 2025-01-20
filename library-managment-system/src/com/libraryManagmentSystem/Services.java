@@ -49,8 +49,10 @@ public class Services {
             return;
         }
         System.out.println("All Book Names Available in the Library:");
+        int numberOFBooks = 1;
         for (Book book: booksList){
-            System.out.println(book);
+            System.out.println(numberOFBooks + ". " +book);
+            numberOFBooks++;
         }
     }
 
